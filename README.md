@@ -22,6 +22,9 @@ Set the <code>data-w-e</code> for how many times(in <code>milliesecond</code>) w
 Set the <code>data-s-t</code> for the speed of the type for each word (in <code>milliesecond</code>).
 
        
-Set the <code>data-s-t</code> for the speed of the erase for each word (in <code>milliesecond</code>).</p>
+Set the <code>data-s-t</code> for the speed of the erase for each word (in <code>milliesecond</code>).
+
+
+Set the <code>data-words</code> for set words. (It just need to set it like that : <code>data-words = '"anything","anything","anything","anything"'</code> )</p>
 
  </h3>
