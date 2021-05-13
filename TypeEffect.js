@@ -1,42 +1,35 @@
-const textshower = document.getElementsByClassName('type')[0];
-const textstyle = document.querySelector('.variables');
-const typecrow = document.getElementsByClassName('typecrow')[0];
-console.log(textstyle);
+const typer = document.getElementsByTagName("TYPEEFFECT")[0]
 
-let word = textstyle.getAttribute('data-words');
-let speedTypeAT = textstyle.getAttribute('data-s-t');
-let speedEraserAT = textstyle.getAttribute('data-s-e');
-let waitTypeAT = textstyle.getAttribute('data-w-t');
-let waitEraseAT = textstyle.getAttribute('data-w-e');
-let waitStartAT = textstyle.getAttribute('data-w-s');
-let blinkSpeedAT = textstyle.getAttribute('data-blink-s');
-
-let texts;
+let texts 
 let index = -1;
 let currentString;
 let letters = "";
+let fontsize;
+let fontwaight;
+let fontfamily;
+
+let word = typer.getAttribute('words');
+let speedTypeAT = typer.getAttribute('speed-type');
+let speedEraserAT = typer.getAttribute('spedd-erase');
+let waitTypeAT = typer.getAttribute('wait-type');
+let waitEraseAT = typer.getAttribute('wait-erase');
+let waitStartAT = typer.getAttribute('wait-start');
+let blinkSpeedAT = typer.getAttribute('speed-blink');
 
 let speedType = 100;
 let speedErase = 50;
 let waitErase = 1000;
 let waitType = 1000;
 let waitStart = 1000;
-let blinkSpeed = 0.5;
-let fontsize;
-    
+
 const timer = ms => new Promise(res => setTimeout(res, ms));
 
-
-
 async function variables(){
-    var size = parseFloat(window.getComputedStyle(textstyle,null).getPropertyValue('font-size'));
-    fontsize = size ;
-
-    if(typecrow != null){
-        typecrow.innerHTML = '&nbsp;';
-    }
-    if(textshower != null){
-        textshower.style.display = "inline-block";
+    if(typer != null){
+        typer.style.display = "inline-block"
+        fontsize = typer.style.fontSize;
+        fontwaight = typer.style.fontWeight;
+        fontfamily = typer.style.fontFamily;
     }
     if(word != null){
         texts = JSON.parse("[" + word + "]");
@@ -95,21 +88,17 @@ function style(isBlinking){
             font-weight: bold;
             margin-right: 0.1rem;
             margin-left: 0.1rem;
-            margin-top: 2rem;
             width: 3px;
+            font-family: ${fontfamily}
+            font-waight: ${fontwaight}px
             font-size: ${fontsize}px !important;
             animation: blink ${blinkSpeed}s infinite;
         }
-        
         @keyframes blink{
             0%{background-color: white;}
             50%{background: transparent;}
             100%{background-color: black;}
-        }
-        
-        .type{
-            margin-top: 2rem;
-        }`; 
+        }`
     }else{
         animation = `.typecrow{
             display: inline-block;
@@ -119,23 +108,18 @@ function style(isBlinking){
             width: 3px;
             font-size: ${fontsize}px !important;
             animation: none;
-            margin-top: 2rem;
             background-color: black;
-        }
-        
-        .type{
-            margin-top: 2rem;
-        }`;
+        }`
     }
     style.innerHTML = animation;
     document.head.appendChild(style);
 }
 
-//Type function
+
 async function type(){
     if(texts.length > index){
         index++;
-        currentString = texts[index];
+        currentString = texts[index];    
     }
     if(index >= texts.length){
         index = 0;
@@ -143,7 +127,8 @@ async function type(){
     }
     for(var i = 0; i < texts[index].length; i++){
         letters += currentString.charAt(i);
-        textshower.textContent = letters;
+        typer.innerHTML = `<span>${letters}</span>` 
+        typer.innerHTML += `<span class="typecrow">&nbsp;</span>`
         style(false);
         await timer(speedType);
         if(letters === currentString){
@@ -153,13 +138,14 @@ async function type(){
         }
     }
 }
-
-//Erase Function
+    
+    //Erase Function
 async function erase(){
     for(var i = texts[index].length; i > 0;i--){
         letters = currentString.substring(0, i-1);
-        textshower.textContent = letters;
-        style(false);
+        typer.innerHTML = `<span>${letters}</span>` 
+        typer.innerHTML += `<span class="typecrow">&nbsp;</span>`
+        style(false)
         await timer (speedErase);
         if(letters === ""){
             style(true);
@@ -169,11 +155,9 @@ async function erase(){
     }
 }
 
-//Start listener
-document.addEventListener("DOMContentLoaded",async function loader(){
-        variables();
-        style(true);
-        await timer(waitStart);
-        type();
-    }
-);
+document.addEventListener('DOMContentLoaded', async() =>{
+    variables()
+    style(true)
+    await timer(waitStart)
+    type()
+})
