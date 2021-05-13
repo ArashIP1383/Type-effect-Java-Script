@@ -21,6 +21,7 @@ let speedErase = 50;
 let waitErase = 1000;
 let waitType = 1000;
 let waitStart = 1000;
+let blinkSpeed;
 
 const timer = ms => new Promise(res => setTimeout(res, ms));
 
