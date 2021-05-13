@@ -1,7 +1,7 @@
 # Type-effect-Java-Script
 <h1>The professional Type effect with advanced customization .</h1>
 
-<h3> You have incredible options for this script but you can just set two of the <code>data-</code> variables and work correctly.
+<h3> You have incredible options for this script but you can just set two of the variables and work correctly.
 
 
 <h3><a href="https://araship1383.github.io/Type-effect-Java-Script/">See this demo</a></h3>
