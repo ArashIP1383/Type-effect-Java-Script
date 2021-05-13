@@ -39,9 +39,10 @@ Just add the script to the HTML codes and use it with tag <code>typeeffect</code
 
 <h3>Here is the example of the HTML code :
 
-<pre><code>&lt;typeeffect wait-start="1000" wait-type="1000" wait-erase="1000" speed-type="200" speed-erase="100" words='"Hello World!!!","Please submit the issue if the code is not  working"' &gt;&lt;/typeeffect&gt;</code></pre>
+<pre><code>&lt;typeeffect wait-start="1000" wait-type="1000" wait-erase="1000" speed-type="200" speed-erase="100" words='"Hello World!!!","Please submit the issue if the code is not  working"' &gt;&lt;/typeeffect&gt;</code></pre></h3>
 <h3>or</h3>
-<pre><code>&lt;typeeffect wait-start="1000" speed-type="200" words='"Hello World!!!","Please submit the issue if the code is not  working"' &gt;&lt;/typeeffect&gt;</code></pre></h3>
+
+ <h3><pre><code>&lt;typeeffect wait-start="1000" speed-type="200" words='"Hello World!!!","Please submit the issue if the code is not  working"' &gt;&lt;/typeeffect&gt;</code></pre></h3>
 
 </p>
 
