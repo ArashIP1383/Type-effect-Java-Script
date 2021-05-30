@@ -1,5 +1,46 @@
 const typer = document.getElementsByTagName("TYPEEFFECT")[0]
 
+class t {
+    // constructor(waittyper,speedtyper,waiteraser,speederaser){
+    //    this.waittyper = waittyper; 
+    //    this.waiteraser = waiteraser; 
+    //    this.speedtyper = speedtyper; 
+    //    this.speederaser = speederaser; 
+    // }
+
+    async typer(waittyper,speedtyper) {
+        for(let i; i < letters.length; i++){
+            letters += currentString.charAt(i);
+        typer.innerHTML = `<span>${letters}</span>` 
+        typer.innerHTML += `<span class="typecrow">&nbsp;</span>`
+        style(false);
+        await timer(speedType);
+        if(letters === currentString){
+            style(true);
+            await timer(waitErase);
+            eraser();
+        }
+        
+    }
+
+    async eraser(waiteraser,speederaser){
+        for(var i = texts[index].length; i > 0;i--){
+            letters = currentString.substring(0, i-1);
+            typer.innerHTML = `<span>${letters}</span>` 
+            typer.innerHTML += `<span class="typecrow">&nbsp;</span>`
+            style(false)
+            await timer (speedErase);
+            if(letters === ""){
+                style(true);
+                await timer(waitType);
+                typer();
+            }
+        }
+    }
+    
+}
+
+
 let texts 
 let index = -1;
 let currentString;
@@ -24,6 +65,8 @@ let waitStart = 1000;
 let blinkSpeed;
 
 const timer = ms => new Promise(res => setTimeout(res, ms));
+
+variables();
 
 async function variables(){
     if(typer != null){
@@ -78,6 +121,8 @@ async function variables(){
         var joooni = parseFloat(waitTypeAT);
         waitErase = joooni;
     }
+    let c = new t;
+    c.typer(waitType,speedType);
 }
 
 function style(isBlinking){
@@ -117,48 +162,48 @@ function style(isBlinking){
 }
 
 
-async function type(){
-    if(texts.length > index){
-        index++;
-        currentString = texts[index];    
-    }
-    if(index >= texts.length){
-        index = 0;
-        currentString = texts[index];
-    }
-    for(var i = 0; i < texts[index].length; i++){
-        letters += currentString.charAt(i);
-        typer.innerHTML = `<span>${letters}</span>` 
-        typer.innerHTML += `<span class="typecrow">&nbsp;</span>`
-        style(false);
-        await timer(speedType);
-        if(letters === currentString){
-            style(true);
-            await timer(waitErase);
-            erase();
-        }
-    }
-}
+// async function type(){
+//     if(texts.length > index){
+//         index++;
+//         currentString = texts[index];    
+//     }
+//     if(index >= texts.length){
+//         index = 0;
+//         currentString = texts[index];
+//     }
+//     for(var i = 0; i < texts[index].length; i++){
+//         letters += currentString.charAt(i);
+//         typer.innerHTML = `<span>${letters}</span>` 
+//         typer.innerHTML += `<span class="typecrow">&nbsp;</span>`
+//         style(false);
+//         await timer(speedType);
+//         if(letters === currentString){
+//             style(true);
+//             await timer(waitErase);
+//             erase();
+//         }
+//     }
+// }
     
-    //Erase Function
-async function erase(){
-    for(var i = texts[index].length; i > 0;i--){
-        letters = currentString.substring(0, i-1);
-        typer.innerHTML = `<span>${letters}</span>` 
-        typer.innerHTML += `<span class="typecrow">&nbsp;</span>`
-        style(false)
-        await timer (speedErase);
-        if(letters === ""){
-            style(true);
-            await timer(waitType);
-            type();
-        }
-    }
-}
+//     //Erase Function
+// async function erase(){
+//     for(var i = texts[index].length; i > 0;i--){
+//         letters = currentString.substring(0, i-1);
+//         typer.innerHTML = `<span>${letters}</span>` 
+//         typer.innerHTML += `<span class="typecrow">&nbsp;</span>`
+//         style(false)
+//         await timer (speedErase);
+//         if(letters === ""){
+//             style(true);
+//             await timer(waitType);
+//             type();
+//         }
+//     }
+// }
 
-document.addEventListener('DOMContentLoaded', async() =>{
-    variables()
-    style(true)
-    await timer(waitStart)
-    type()
-})
+// document.addEventListener('DOMContentLoaded', async() =>{
+//     variables()
+//     style(true)
+//     await timer(waitStart)
+//     type()
+// })
