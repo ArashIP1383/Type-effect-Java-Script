@@ -69,23 +69,8 @@ for(let b of typer){
             this.waittypeAT = waittypeAT
         }
 
-        get fontsize(){
-            return b.style.fontSize;
-        }
-
-        get fontwaight(){
-            return b.style.fontWeight;
-        }
-
-        get fontfamily(){
-            return b.style.fontFamily;
-        }
-
-        get blinkspeedv(){
-            return this.blinkspeed;
-        }
-
         variables(){
+            console.log(b.style.fontFamily)
             let texts;
             let speedType = 100;
             let speedErase = 50;
@@ -93,10 +78,6 @@ for(let b of typer){
             let waitType = 1000;
             let waitStart = 1000;
             let blinkSpeed;
-            
-            if(typer != null){
-                b.style.display = "block"
-            }
             if(this.word != null){
                 texts = JSON.parse("[" + this.word + "]");
             }
@@ -170,9 +151,10 @@ for(let b of typer){
     vari.variables()
         
     function style(isBlinking){
+        b.style.display = "block"
+        console.log(b.style.fontSize)
         var style = document.createElement('style');
         var animation;
-        console.log(isBlinking)
         if(isBlinking == true) {
             animation = `.typecrow{
                 display: inline-block;
@@ -180,8 +162,8 @@ for(let b of typer){
                 margin-right: 0.1rem;
                 margin-left: 0.1rem;
                 width: 3px;
-                font-family: ${vari.fontfamily}
-                font-waight: ${vari.fontwaight}px
+                font-family: ${vari.fontfamily};
+                font-waight: ${vari.fontwaight};
                 font-size: ${vari.fontsize}px !important;
                 animation: blink ${vari.blinkspeedv}s infinite;
                 font-size: ${vari.fontsize}px !important;
@@ -198,9 +180,8 @@ for(let b of typer){
                 margin-right: 0.1rem;
                 margin-left: 0.1rem;
                 width: 3px;
-                font-family: ${vari.fontfamily}
-                font-waight: ${vari.fontwaight}px
-                font-size: ${vari.fontsize}px !important;
+                font-family: ${vari.fontfamily};
+                font-waight: ${vari.fontwaight};
                 font-size: ${vari.fontsize}px !important;
                 animation: none;
                 background-color: black;
@@ -210,74 +191,3 @@ for(let b of typer){
         document.head.appendChild(style);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// async function type(){
-//     if(texts.length > index){
-//         index++;
-//         currentString = texts[index];    
-//     }
-//     if(index >= texts.length){
-//         index = 0;
-//         currentString = texts[index];
-//     }
-//     for(var i = 0; i < texts[index].length; i++){
-//         letters += currentString.charAt(i);
-//         typer.innerHTML = `<span>${letters}</span>` 
-//         typer.innerHTML += `<span class="typecrow">&nbsp;</span>`
-//         style(false);
-//         await timer(speedType);
-//         if(letters === currentString){
-//             style(true);
-//             await timer(waitErase);
-//             erase();
-//         }
-//     }
-// }
-    
-//     //Erase Function
-// async function erase(){
-//     for(var i = texts[index].length; i > 0;i--){
-//         letters = currentString.substring(0, i-1);
-//         typer.innerHTML = `<span>${letters}</span>` 
-//         typer.innerHTML += `<span class="typecrow">&nbsp;</span>`
-//         style(false)
-//         await timer (speedErase);
-//         if(letters === ""){
-//             style(true);
-//             await timer(waitType);
-//             type();
-//         }
-//     }
-// }
-
-// document.addEventListener('DOMContentLoaded', async() =>{
-//     variables()
-//     style(true)
-//     await timer(waitStart)
-//     type()
-// })
