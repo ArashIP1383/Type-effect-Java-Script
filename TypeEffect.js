@@ -1,43 +1,63 @@
 const typer = document.getElementsByTagName("TYPEEFFECT")[0]
 
 class t {
-    // constructor(waittyper,speedtyper,waiteraser,speederaser){
-    //    this.waittyper = waittyper; 
-    //    this.waiteraser = waiteraser; 
-    //    this.speedtyper = speedtyper; 
-    //    this.speederaser = speederaser; 
-    // }
+    constructor(text,waiteraser,waittyper,speedtyper,speederaser){
+        this.text = text;
+        this.indexs = -1;
+        this.currenstring = ""
+        this.waiteraser = waiteraser
+        this.waittyper = waittyper
+        this.speedtyper = speedtyper
+        this.speederaser = speederaser
+    }
 
-    async typer(waittyper,speedtyper) {
-        for(let i; i < letters.length; i++){
-            letters += currentString.charAt(i);
-        typer.innerHTML = `<span>${letters}</span>` 
-        typer.innerHTML += `<span class="typecrow">&nbsp;</span>`
-        style(false);
-        await timer(speedType);
-        if(letters === currentString){
-            style(true);
-            await timer(waitErase);
-            eraser();
+    async typer() {
+        let letter;
+        if(this.text > this.indexs){
+            this.indexs++;
+            this.currentstring = this.text[this.indexs];    
+        }
+        if(this.indexs >= this.text.length){
+            this.indexs = 0;
+            this.currentstring = this.text[this.indexs];
+        }
+        for(var i = 0; i < this.text[this.indexs].length; i++){
+            letter += this.currentstring.charAt(i);
+            typer.innerHTML = `<span>${letter}</span>` 
+            typer.innerHTML += `<span class="typecrow">&nbsp;</span>`
+            style(false);
+            await timer(this.speedtyper);
+            if(letter === this.currentstring){
+                style(true);
+                await timer(this.waittyper);
+                return eraser();
+            }
         }
         
     }
 
-    async eraser(waiteraser,speederaser){
-        for(var i = texts[index].length; i > 0;i--){
-            letters = currentString.substring(0, i-1);
-            typer.innerHTML = `<span>${letters}</span>` 
+    async eraser(){
+        let letter;
+        for(var i = this.text[this.indexs].length; i > 0;i--){
+            letter = this.currentstring.substring(0, i-1);
+            typer.innerHTML = `<span>${letter}</span>` 
             typer.innerHTML += `<span class="typecrow">&nbsp;</span>`
             style(false)
-            await timer (speedErase);
-            if(letters === ""){
+            await timer (this.speederaser);
+            if(letter === ""){
                 style(true);
-                await timer(waitType);
-                typer();
+                await timer(this.waittyper);
+                return typer();
             }
         }
     }
     
+}
+
+class v{
+    constructor(word,speedtypeAT,speedEraserAT,waitEraseAT,waitStartAT,blinkSpeedAT){
+        this.word= word
+    }
 }
 
 
