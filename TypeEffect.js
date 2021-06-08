@@ -5,27 +5,33 @@ if(typer != null ){
     for(let b of typer){
         class t {
             constructor(word,waiteraser,waittyper,speedtyper,speederaser){
-                this.textsd = word;
-                this.indexs = -1;
+                //get vaiables {
+                    //get words as a string and converted to array
+                this.texts = word
+                    //index of word array 
+                this.indexs = -1
+                    //get word from index of array
                 this.currenstring = ""
                 this.waiteraser = waiteraser
                 this.waittyper = waittyper
                 this.speedtyper = speedtyper
                 this.speederaser = speederaser
+                //}
             }
             
+            //It is a typer code 
             async typerb() {
                 let letter = "";
-                let vc = this.textsd
-                if(vc.length > this.indexs){
+                let wordArray = this.texts
+                if(wordArray.length > this.indexs){
                     this.indexs ++;
-                    this.currentstring = vc[this.indexs];  
+                    this.currentstring = wordArray[this.indexs];  
                 }
-                if(this.indexs >= vc.length){
+                if(this.indexs >= wordArray.length){
                     this.indexs = 0;
-                    this.currentstring = vc[this.indexs];
+                    this.currentstring = wordArray[this.indexs];
                 }
-                for(var i = 0; i < vc[this.indexs].length; i++){
+                for(var i = 0; i < wordArray[this.indexs].length; i++){
                     letter += this.currentstring.charAt(i);
                     b.innerHTML = `<span>${letter}</span>` 
                     b.innerHTML += `<span class="typecrow">&nbsp;</span>`
@@ -42,7 +48,7 @@ if(typer != null ){
 
             async eraser(){
                 let letter = "";
-                let vb = this.textsd
+                let vb = this.texts
                 for(var i = vb[this.indexs].length; i > 0;i--){
                     letter = this.currentstring.substring(0, i-1);
                     b.innerHTML = `<span>${letter}</span>` 
